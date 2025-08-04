@@ -18,7 +18,7 @@ export const vegetables: Vegetable[] = [
     id: 2,
     name: "Fresh Lettuce",
     price: 80,
-    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400",
+    image: "https://images.unsplash.com/photo-1622206151226-18ca2c9ab4a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400",
     description: "Crisp and fresh lettuce leaves, perfect for healthy salads"
   },
   {
@@ -32,7 +32,7 @@ export const vegetables: Vegetable[] = [
     id: 4,
     name: "Bell Peppers",
     price: 150,
-    image: "https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400",
+    image: "https://images.unsplash.com/photo-1525607551316-4a8e16d1f7d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400",
     description: "Colorful bell peppers packed with nutrients and flavor"
   },
   {
@@ -60,14 +60,14 @@ export const vegetables: Vegetable[] = [
     id: 8,
     name: "Green Beans",
     price: 110,
-    image: "https://images.unsplash.com/photo-1553978297-833d09932d31?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400",
+    image: "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400",
     description: "Tender green beans, perfect for stir-fries and salads"
   },
   {
     id: 9,
     name: "Organic Potatoes",
     price: 50,
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400",
+    image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400",
     description: "Versatile organic potatoes for all your cooking needs"
   },
   {

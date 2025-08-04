@@ -1,13 +1,54 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 
 interface HeroProps {
   onShopNowClick: () => void;
 }
 
+const slideshowImages = [
+  "https://images.unsplash.com/photo-1582515073490-39981397c445?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=800",
+  "https://images.unsplash.com/photo-1610348725531-843dff563e2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=800",
+  "https://images.unsplash.com/photo-1506976785307-8732e854ad03?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=800",
+  "https://images.unsplash.com/photo-1588168333986-5078d3ae3976?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=800",
+  "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=800"
+];
+
 export default function Hero({ onShopNowClick }: HeroProps) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        (prevIndex + 1) % slideshowImages.length
+      );
+    }, 4000); // Change image every 4 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="gradient-organic text-white py-16 lg:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section className="relative overflow-hidden py-16 lg:py-24">
+      {/* Background slideshow */}
+      <div className="absolute inset-0">
+        {slideshowImages.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <img
+              src={image}
+              alt={`Fresh vegetables ${index + 1}`}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/40"></div>
+          </div>
+        ))}
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
         <h2 className="text-4xl lg:text-6xl font-bold mb-6">Farm Fresh Organic Vegetables</h2>
         <p className="text-xl lg:text-2xl mb-4 font-light">Grown with love, delivered with care</p>
         <p className="text-lg lg:text-xl mb-8 max-w-3xl mx-auto font-light">
@@ -21,6 +62,21 @@ export default function Hero({ onShopNowClick }: HeroProps) {
         >
           Shop Now
         </Button>
+      </div>
+
+      {/* Slideshow indicators */}
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2">
+        {slideshowImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentImageIndex(index)}
+            className={`w-3 h-3 rounded-full transition-colors ${
+              index === currentImageIndex 
+                ? 'bg-warm-orange' 
+                : 'bg-white/50 hover:bg-white/75'
+            }`}
+          />
+        ))}
       </div>
     </section>
   );

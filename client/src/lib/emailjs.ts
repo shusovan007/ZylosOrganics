@@ -39,17 +39,28 @@ export async function sendOrderEmail(
   };
 
   try {
-    // Initialize EmailJS if not already done
-    if (!emailjs) {
-      throw new Error('EmailJS not available');
-    }
+    // Check if EmailJS environment variables are configured
+    const hasEmailJSConfig = SERVICE_ID !== "service_xyz_organics" && 
+                            TEMPLATE_ID !== "template_order" && 
+                            PUBLIC_KEY !== "your_public_key";
 
-    // For now, we'll simulate successful email sending
-    // This prevents the error and allows order completion
-    console.log('Order email would be sent with data:', emailData);
-    
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    if (hasEmailJSConfig && emailjs) {
+      // Send real email using EmailJS
+      console.log('Sending email notification to:', emailData.to_email);
+      
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        emailData,
+        PUBLIC_KEY
+      );
+      
+      console.log('Email sent successfully!');
+    } else {
+      // Simulate email sending for development
+      console.log('EmailJS not configured - simulating email sending');
+      console.log('Order email would be sent with data:', emailData);
+    }
     
     // Log order details for development
     console.log('Order processed successfully:');
@@ -57,21 +68,16 @@ export async function sendOrderEmail(
     console.log('Items:', cartItems);
     console.log('Total:', `₹${total}`);
     
-    // To enable real email sending, uncomment this section and configure EmailJS:
-    /*
-    await emailjs.send(
-      SERVICE_ID,
-      TEMPLATE_ID,
-      emailData,
-      PUBLIC_KEY
-    );
-    */
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
     
-    // Return success - this prevents the "Order Failed" error
+    // Return success
     return Promise.resolve();
     
   } catch (error) {
     console.error('Failed to send order email:', error);
-    throw new Error('Failed to process order. Please try again.');
+    // Still allow order to complete even if email fails
+    console.log('Order completed but email notification failed');
+    return Promise.resolve();
   }
 }
