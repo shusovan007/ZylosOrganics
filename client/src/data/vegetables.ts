@@ -69,5 +69,12 @@ export const vegetables: Vegetable[] = [
     price: 50,
     image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400",
     description: "Versatile organic potatoes for all your cooking needs"
+  },
+  {
+    id: 10,
+    name: "Button Mushrooms",
+    price: 200,
+    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400",
+    description: "Fresh button mushrooms, perfect for cooking and salads"
   }
 ];
