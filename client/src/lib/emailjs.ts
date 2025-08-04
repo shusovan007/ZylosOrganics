@@ -25,6 +25,8 @@ export async function sendOrderEmail(
 
   const emailData = {
     to_email: "nepat68953@misehub.com",
+    from_name: "xyzOrganics Customer Order",
+    reply_to: customerDetails.email,
     customer_name: customerDetails.fullName,
     customer_email: customerDetails.email,
     customer_phone: customerDetails.phone,
@@ -33,6 +35,7 @@ export async function sendOrderEmail(
     total_amount: `₹${total}`,
     order_date: new Date().toLocaleDateString('en-IN'),
     order_time: new Date().toLocaleTimeString('en-IN'),
+    message: `New order received from ${customerDetails.fullName}\n\nOrder Details:\n${orderItems}\n\nTotal: ₹${total}\n\nCustomer Contact:\nEmail: ${customerDetails.email}\nPhone: ${customerDetails.phone}\nAddress: ${customerDetails.address}`,
   };
 
   try {
