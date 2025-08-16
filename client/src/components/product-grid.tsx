@@ -168,7 +168,6 @@ interface ProductGridProps {
 
 export default function ProductGrid({ onAddToCart }: ProductGridProps) {
   const [quantities, setQuantities] = useState<Record<number, number>>({});
-  const [cartTotals, setCartTotals] = useState<Record<number, number>>({});
   const [clickedButtons, setClickedButtons] = useState<Record<number, boolean>>({});
 
   const getQuantity = (id: number) => quantities[id] ?? 0;
@@ -183,16 +182,10 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
     const quantity = getQuantity(vegetable.id);
     if (quantity === 0) return;
 
-    // Update cart totals (accumulate)
-    setCartTotals(prev => ({
-      ...prev,
-      [vegetable.id]: (prev[vegetable.id] ?? 0) + quantity
-    }));
-
     // Notify parent
     onAddToCart(vegetable, quantity);
 
-    // Button feedback
+    // Trigger sparkle animation
     setClickedButtons(prev => ({ ...prev, [vegetable.id]: true }));
     setTimeout(() => setClickedButtons(prev => ({ ...prev, [vegetable.id]: false })), 1200);
 
@@ -213,7 +206,6 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {vegetables.map((vegetable) => {
             const qty = getQuantity(vegetable.id);
-            const total = cartTotals[vegetable.id] ?? 0;
             const clicked = clickedButtons[vegetable.id];
 
             return (
@@ -224,15 +216,6 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
                     alt={vegetable.name}
                     className="w-full h-48 object-cover"
                   />
-
-                 {/* Elegant circle showing total added to cart */}
-{total > 0 && (
-  <div className="absolute right-3 top-3 z-20 w-10 h-10 flex items-center justify-center 
-                  rounded-full bg-gradient-to-r from-green-500 to-green-700 
-                  text-white text-sm font-bold shadow-xl border-2 border-white animate-pop-glow">
-    {total}
-  </div>
-)}
                 </div>
 
                 <CardContent className="p-6">
@@ -270,13 +253,23 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
                   <Button 
                     onClick={() => handleAddToCart(vegetable)}
                     disabled={qty === 0}
-                    className={`w-full font-semibold py-2 px-4 rounded-lg transition-all duration-300 flex items-center justify-center
+                    className={`
+                      relative w-full font-semibold py-2 px-4 rounded-lg transition-all duration-300 flex items-center justify-center
                       ${qty === 0 
                         ? "bg-gray-300 text-gray-500 cursor-not-allowed" 
-                        : clicked 
-                          ? "bg-green-600 hover:bg-green-600 text-white" 
-                          : "bg-organic-green hover:bg-organic-green/90 text-white"}`}
+                        : "bg-organic-green text-white"
+                      }
+                    `}
                   >
+                    {/* Sparkle particles */}
+                    {clicked && (
+                      <>
+                        {[...Array(6)].map((_, i) => (
+                          <span key={i} className={`absolute w-2 h-2 bg-white rounded-full sparkle sparkle-${i}`}></span>
+                        ))}
+                      </>
+                    )}
+
                     {clicked ? (
                       <>
                         <Check className="w-4 h-4 mr-2" /> Added
@@ -289,21 +282,27 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
                   </Button>
                 </CardContent>
               </Card>
-          )})}
+            );
+          })}
         </div>
       </div>
 
-      {/* Add some animations */}
+      {/* Sparkle animations */}
       <style>{`
-        @keyframes scalePulse {
-          0% { transform: scale(1); }
-          50% { transform: scale(1.3); }
-          100% { transform: scale(1); }
+        @keyframes sparkle {
+          0% { transform: translate(0,0) scale(0); opacity: 1; }
+          50% { transform: translate(var(--x), var(--y)) scale(1); opacity: 1; }
+          100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
         }
-        .animate-scale-pulse { animation: scalePulse 0.4s ease-in-out; }
+
+        ${[...Array(6)].map((_, i) => `
+          .sparkle-${i} {
+            --x: ${Math.floor(Math.random()*60-30)}px;
+            --y: ${Math.floor(Math.random()*-60)}px;
+            animation: sparkle 0.8s ease-out forwards;
+          }
+        `).join("\n")}
       `}</style>
     </section>
   );
 }
-
-

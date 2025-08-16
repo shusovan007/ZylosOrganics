@@ -382,6 +382,7 @@ export default function CheckoutModal({
                 name="expectedDate"
                 required
                 min={today}
+                 max={new Date(new Date(today).getTime() + 3 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]} // today + 3 days
                 value={formData.expectedDate}
                 onChange={handleChange}
                 className="mt-1"
