@@ -1,8 +1,8 @@
-# xyzOrganics - Organic Vegetables E-commerce
+# ZylosOrganics - Organic Vegetables E-commerce
 
 ## Overview
 
-xyzOrganics is a lightweight, single-page React e-commerce application for selling organic vegetables. The application provides a complete shopping experience with a product catalog, shopping cart functionality, and email-based order processing. It features a clean, organic-themed design optimized for mobile devices and focuses on showcasing fresh vegetables with high-quality imagery and seamless user interactions.
+ZylosOrganics is a lightweight, single-page React e-commerce application for selling organic vegetables. The application provides a complete shopping experience with a product catalog, shopping cart functionality, and email-based order processing. It features a clean, organic-themed design optimized for mobile devices and focuses on showcasing fresh vegetables with high-quality imagery and seamless user interactions.
 
 ## User Preferences
 

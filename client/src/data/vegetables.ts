@@ -6,75 +6,290 @@ export interface Vegetable {
   description: string;
 }
 
+//for local 
+// export const vegetables: Vegetable[] = [
+//   {
+//     id: 1,
+//     name: "Baby Corn",
+//     price: 150,
+//     image: "./public/images/cartItems/babycorn.jpg",
+//     description: "Tender and sweet baby corn, perfect for stir-fries and salads."
+//   },
+//   {
+//     id: 2,
+//     name: "Beans",
+//     price: 107,
+//     image: "./public/images/cartItems/beans-barbati.jpg",
+//     description: "Fresh, crisp beans packed with fiber and nutrients."
+//   },
+//   {
+//     id: 3,
+//     name: "Beetroot",
+//     price: 41,
+//     image: "./public/images/cartItems/beetroot.jpg",
+//     description: "Earthy and sweet beetroot, great for salads and juices."
+//   },
+//   {
+//     id: 4,
+//     name: "Bell Pepper",
+//     price: 150,
+//     image: "./public/images/cartItems/bellpepper.jpg",
+//     description: "Bright and crunchy bell peppers full of vitamins."
+//   },
+//   {
+//     id: 5,
+//     name: "Brinjal",
+//     price: 74,
+//     image: "./public/images/cartItems/brinjal.jpg",
+//     description: "Smooth and fresh brinjal, ideal for curries and fries."
+//   },
+//   {
+//     id: 6,
+//     name: "Broccoli",
+//     price: 418,
+//     image: "./public/images/cartItems/broccoli.jpg",
+//     description: "Nutrient-rich broccoli florets for healthy meals."
+//   },
+//   {
+//     id: 7,
+//     name: "Cabbage",
+//     price: 42,
+//     image: "./public/images/cartItems/cabbage.jpg",
+//     description: "Fresh, crunchy cabbage perfect for salads and stir-fries."
+//   },
+//   {
+//     id: 8,
+//     name: "Capsicum",
+//     price: 125,
+//     image: "./public/images/cartItems/capsicum.jpg",
+//     description: "Flavorful capsicum to add color and crunch to your dishes."
+//   },
+//   {
+//     id: 9,
+//     name: "Carrot",
+//     price: 48,
+//     image: "./public/images/cartItems/carrot.jpg",
+//     description: "Sweet, crunchy carrots rich in beta-carotene."
+//   },
+//   {
+//     id: 10,
+//     name: "Cauliflower",
+//     price: 83,
+//     image: "./public/images/cartItems/cauliflower.jpg",
+//     description: "Fresh cauliflower florets for curries, fries, and more."
+//   },
+//   {
+//     id: 11,
+//     name: "Chilli",
+//     price: 71,
+//     image: "./public/images/cartItems/redchilli.jpg",
+//     description: "Spicy green chillies to add heat to your recipes."
+//   },
+//   {
+//     id: 12,
+//     name: "Coriander",
+//     price: 214,
+//     image: "./public/images/cartItems/corriander.jpg",
+//     description: "Fragrant fresh coriander leaves for garnishing and flavor."
+//   },
+//   {
+//     id: 13,
+//     name: "Cucumber",
+//     price: 45,
+//     image: "./public/images/cartItems/cucumber.jpg",
+//     description: "Cool, refreshing cucumbers for salads and snacks."
+//   },
+//   {
+//     id: 14,
+//     name: "Garlic",
+//     price: 80,
+//     image: "./public/images/cartItems/garlic.jpg",
+//     description: "Aromatic garlic cloves to enhance any dish."
+//   },
+//   {
+//     id: 15,
+//     name: "Ginger",
+//     price: 116,
+//     image: "./public/images/cartItems/ginger2.jpg",
+//     description: "Fresh ginger root for flavor and health benefits."
+//   },
+//   {
+//     id: 16,
+//     name: "Onion",
+//     price: 32,
+//     image: "./public/images/cartItems/onion.jpg",
+//     description: "Fresh onions for everyday cooking needs."
+//   },
+//   {
+//     id: 17,
+//     name: "Potato",
+//     price: 26,
+//     image: "./public/images/cartItems/potato2.jpg",
+//     description: "Versatile potatoes for boiling, frying, or baking."
+//   },
+//   {
+//     id: 18,
+//     name: "Spinach",
+//     price: 72,
+//     image: "./public/images/cartItems/spinach.jpg",
+//     description: "Iron-rich spinach leaves for healthy meals."
+//   },
+//   {
+//     id: 19,
+//     name: "Spring Onion",
+//     price: 60,
+//     image: "./public/images/cartItems/springonion.jpg",
+//     description: "Fresh spring onions to add a mild onion flavor."
+//   },
+//   {
+//     id: 20,
+//     name: "Tomato",
+//     price: 66,
+//     image: "./public/images/cartItems/tomato2.jpg",
+//     description: "Juicy tomatoes perfect for salads and cooking."
+//   }
+// ];
+
+
 export const vegetables: Vegetable[] = [
   {
     id: 1,
-    name: "Organic Tomatoes",
-    price: 120,
-    image: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400",
-    description: "Fresh, juicy organic tomatoes perfect for salads and cooking"
+    name: "Baby Corn",
+    price: 150,
+    image: "/images/cartItems/babycorn.jpg",
+    description: "Tender and sweet baby corn, perfect for stir-fries and salads."
   },
   {
     id: 2,
-    name: "Fresh Lettuce",
-    price: 80,
-    image: "https://images.unsplash.com/photo-1622206151226-18ca2c9ab4a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400",
-    description: "Crisp and fresh lettuce leaves, perfect for healthy salads"
+    name: "Beans",
+    price: 107,
+    image: "/images/cartItems/beans-barbati.jpg",
+    description: "Fresh, crisp beans packed with fiber and nutrients."
   },
   {
     id: 3,
-    name: "Organic Carrots",
-    price: 100,
-    image: "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400",
-    description: "Sweet and crunchy organic carrots, rich in vitamins"
+    name: "Beetroot",
+    price: 41,
+    image: "/images/cartItems/beetroot.jpg",
+    description: "Earthy and sweet beetroot, great for salads and juices."
   },
   {
     id: 4,
-    name: "Bell Peppers",
+    name: "Bell Pepper",
     price: 150,
-    image: "https://images.unsplash.com/photo-1525607551316-4a8e16d1f7d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400",
-    description: "Colorful bell peppers packed with nutrients and flavor"
+    image: "/images/cartItems/bellpepper.jpg",
+    description: "Bright and crunchy bell peppers full of vitamins."
   },
   {
     id: 5,
-    name: "Fresh Spinach",
-    price: 60,
-    image: "https://images.unsplash.com/photo-1576045057995-568f588f82fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400",
-    description: "Iron-rich spinach leaves, perfect for healthy meals"
+    name: "Brinjal",
+    price: 74,
+    image: "/images/cartItems/brinjal.jpg",
+    description: "Smooth and fresh brinjal, ideal for curries and fries."
   },
   {
     id: 6,
-    name: "Organic Broccoli",
-    price: 140,
-    image: "https://images.unsplash.com/photo-1628773822503-930a7eaecf80?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400",
-    description: "Fresh broccoli florets, packed with vitamins and minerals"
+    name: "Broccoli",
+    price: 418,
+    image: "/images/cartItems/broccoli.jpg",
+    description: "Nutrient-rich broccoli florets for healthy meals."
   },
   {
     id: 7,
-    name: "Red Onions",
-    price: 70,
-    image: "https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400",
-    description: "Fresh red onions with a mild, sweet flavor"
+    name: "Cabbage",
+    price: 42,
+    image: "/images/cartItems/cabbage.jpg",
+    description: "Fresh, crunchy cabbage perfect for salads and stir-fries."
   },
   {
     id: 8,
-    name: "Green Beans",
-    price: 110,
-    image: "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400",
-    description: "Tender green beans, perfect for stir-fries and salads"
+    name: "Capsicum",
+    price: 125,
+    image: "/images/cartItems/capsicum.jpg",
+    description: "Flavorful capsicum to add color and crunch to your dishes."
   },
   {
     id: 9,
-    name: "Organic Potatoes",
-    price: 50,
-    image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400",
-    description: "Versatile organic potatoes for all your cooking needs"
+    name: "Carrot",
+    price: 48,
+    image: "/images/cartItems/carrot.jpg",
+    description: "Sweet, crunchy carrots rich in beta-carotene."
   },
   {
     id: 10,
-    name: "Button Mushrooms",
-    price: 200,
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=400",
-    description: "Fresh button mushrooms, perfect for cooking and salads"
+    name: "Cauliflower",
+    price: 83,
+    image: "/images/cartItems/cauliflower.jpg",
+    description: "Fresh cauliflower florets for curries, fries, and more."
+  },
+  {
+    id: 11,
+    name: "Chilli",
+    price: 71,
+    image: "/images/cartItems/redchilli.jpg",
+    description: "Spicy green chillies to add heat to your recipes."
+  },
+  {
+    id: 12,
+    name: "Coriander",
+    price: 214,
+    image: "/images/cartItems/corriander.jpg",
+    description: "Fragrant fresh coriander leaves for garnishing and flavor."
+  },
+  {
+    id: 13,
+    name: "Cucumber",
+    price: 45,
+    image: "/images/cartItems/cucumber.jpg",
+    description: "Cool, refreshing cucumbers for salads and snacks."
+  },
+  {
+    id: 14,
+    name: "Garlic",
+    price: 80,
+    image: "/images/cartItems/garlic.jpg",
+    description: "Aromatic garlic cloves to enhance any dish."
+  },
+  {
+    id: 15,
+    name: "Ginger",
+    price: 116,
+    image: "/images/cartItems/ginger2.jpg",
+    description: "Fresh ginger root for flavor and health benefits."
+  },
+  {
+    id: 16,
+    name: "Onion",
+    price: 32,
+    image: "/images/cartItems/onion.jpg",
+    description: "Fresh onions for everyday cooking needs."
+  },
+  {
+    id: 17,
+    name: "Potato",
+    price: 26,
+    image: "/images/cartItems/potato2.jpg",
+    description: "Versatile potatoes for boiling, frying, or baking."
+  },
+  {
+    id: 18,
+    name: "Spinach",
+    price: 72,
+    image: "/images/cartItems/spinach.jpg",
+    description: "Iron-rich spinach leaves for healthy meals."
+  },
+  {
+    id: 19,
+    name: "Spring Onion",
+    price: 60,
+    image: "/images/cartItems/springonion.jpg",
+    description: "Fresh spring onions to add a mild onion flavor."
+  },
+  {
+    id: 20,
+    name: "Tomato",
+    price: 66,
+    image: "/images/cartItems/tomato2.jpg",
+    description: "Juicy tomatoes perfect for salads and cooking."
   }
 ];

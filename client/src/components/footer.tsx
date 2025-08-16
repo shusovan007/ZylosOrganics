@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h4 className="text-xl font-bold mb-4 text-organic-green">xyzOrganics</h4>
+            <h4 className="text-xl font-bold mb-4 text-organic-green">ZylosOrganics</h4>
             <p className="text-gray-300 mb-4">
               Fresh & Natural organic vegetables delivered to your doorstep. 
               Sustainably grown, locally sourced.
@@ -33,11 +33,11 @@ export default function Footer() {
             <div className="space-y-2 text-gray-300">
               <div className="flex items-center">
                 <Phone className="w-4 h-4 mr-2" />
-                <span>+91 12345 67890</span>
+                <span>+91 90515-57004</span>
               </div>
               <div className="flex items-center">
                 <Mail className="w-4 h-4 mr-2" />
-                <span>hello@xyzorganics.com</span>
+                <span>kaustavdutta9051@gmail.com</span>
               </div>
               <div className="flex items-center">
                 <MapPin className="w-4 h-4 mr-2" />
@@ -48,7 +48,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 xyzOrganics. All rights reserved. Made with love for healthy living.</p>
+          <p>&copy; 2024 ZylosOrganics. All rights reserved. Made with love for healthy living.</p>
         </div>
       </div>
     </footer>

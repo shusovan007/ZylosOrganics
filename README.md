@@ -1,4 +1,4 @@
-# xyzOrganics - Farm Fresh Organic Vegetables
+# ZylosOrganics - Farm Fresh Organic Vegetables
 
 A lightweight, single-page React e-commerce application for organic vegetables with shopping cart functionality and email order processing.
 

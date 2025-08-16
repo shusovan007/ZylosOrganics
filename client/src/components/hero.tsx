@@ -5,12 +5,24 @@ interface HeroProps {
   onShopNowClick: () => void;
 }
 
+//for local
+
+// const slideshowImages = [
+//   "./public/images/slideShow/slideshow1.jpg",
+//   "./public/images/slideShow/slideshow2.jpg",
+//   "./public/images/slideShow/slideshow3.jpg",
+//   "./public/images/slideShow/slideshow4.jpg",
+//   "./public/images/slideShow/slideshow5.jpg"
+// ];
+
+//for deployment
+
 const slideshowImages = [
-  "https://images.unsplash.com/photo-1582515073490-39981397c445?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=800",
-  "https://images.unsplash.com/photo-1610348725531-843dff563e2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=800",
-  "https://images.unsplash.com/photo-1506976785307-8732e854ad03?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=800",
-  "https://images.unsplash.com/photo-1588168333986-5078d3ae3976?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=800",
-  "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=800"
+  "/images/slideShow/slideshow1.jpg",
+  "/images/slideShow/slideshow2.jpg",
+  "/images/slideShow/slideshow3.jpg",
+  "/images/slideShow/slideshow4.jpg",
+  "/images/slideShow/slideshow5.jpg"
 ];
 
 export default function Hero({ onShopNowClick }: HeroProps) {

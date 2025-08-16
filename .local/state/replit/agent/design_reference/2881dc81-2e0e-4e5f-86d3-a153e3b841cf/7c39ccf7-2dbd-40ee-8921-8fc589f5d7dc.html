@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZylosOrganics - Fresh Organic Vegetables</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'organic-green': '#16a34a',
+                        'organic-light': '#22c55e',
+                        'organic-earth': '#92400e',
+                        'organic-gray': '#6b7280',
+                        'organic-bg': '#fafaf9'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-organic-bg font-inter">
+    <!-- @COMPONENT: Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <i class="fas fa-leaf text-organic-green text-2xl mr-3"></i>
+                    <h1 class="text-2xl font-bold text-gray-900">ZylosOrganics</h1>
+                </div>
+                <button id="cartToggle" class="relative bg-organic-green text-white px-4 py-2 rounded-lg hover:bg-organic-light transition-colors">
+                    <i class="fas fa-shopping-cart mr-2"></i>
+                    Cart (<span id="cartCount">0</span>)
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- @END_COMPONENT: Header -->
+
+    <!-- @COMPONENT: Hero Section -->
+    <section class="bg-gradient-to-br from-green-50 to-green-100 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+                Fresh <span class="text-organic-green">Organic</span> Vegetables
+            </h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+                Farm-fresh, pesticide-free vegetables delivered straight to your doorstep. 
+                Nourish your family with nature's finest produce.
+            </p>
+            <button onclick="document.getElementById('catalog').scrollIntoView({behavior: 'smooth'})" 
+                    class="bg-organic-green text-white px-8 py-3 rounded-lg font-semibold hover:bg-organic-light transition-colors">
+                Shop Now
+            </button>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Hero Section -->
+
+    <!-- @COMPONENT: Product Catalog -->
+    <section id="catalog" class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl font-bold text-center text-gray-900 mb-12">Our Fresh Vegetables</h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="productGrid">
+                <!-- Products will be rendered here by JavaScript -->
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Product Catalog -->
+
+    <!-- @COMPONENT: Cart Sidebar -->
+    <div id="cartSidebar" class="fixed inset-y-0 right-0 w-96 bg-white shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out z-50">
+        <div class="flex flex-col h-full">
+            <div class="flex items-center justify-between p-6 border-b">
+                <h3 class="text-xl font-semibold text-gray-900">Shopping Cart</h3>
+                <button id="closeCart" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto p-6">
+                <div id="cartItems">
+                    <p class="text-gray-500 text-center py-8">Your cart is empty</p>
+                </div>
+            </div>
+            
+            <div class="border-t p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-lg font-semibold">Total:</span>
+                    <span id="cartTotal" class="text-xl font-bold text-organic-green">₹0</span>
+                </div>
+                <button id="checkoutBtn" class="w-full bg-organic-green text-white py-3 rounded-lg font-semibold hover:bg-organic-light transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: Cart Sidebar -->
+
+    <!-- @COMPONENT: Checkout Modal -->
+    <div id="checkoutModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg max-w-md w-full max-h-90vh overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-semibold text-gray-900">Checkout</h3>
+                    <button id="closeCheckout" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <form id="checkoutForm" class="space-y-4">
+                    <div>
+                        <label for="fullName" class="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-organic-green focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                        <input type="email" id="email" name="email" required 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-organic-green focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone *</label>
+                        <input type="tel" id="phone" name="phone" required 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-organic-green focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Address *</label>
+                        <textarea id="address" name="address" required rows="3"
+                                  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-organic-green focus:border-transparent"></textarea>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg mt-6">
+                        <h4 class="font-semibold text-gray-900 mb-2">Order Summary</h4>
+                        <div id="orderSummary"></div>
+                        <div class="border-t pt-2 mt-2">
+                            <div class="flex justify-between font-semibold">
+                                <span>Total:</span>
+                                <span id="checkoutTotal" class="text-organic-green"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" id="submitOrder" 
+                            class="w-full bg-organic-green text-white py-3 rounded-lg font-semibold hover:bg-organic-light transition-colors">
+                        <span id="submitText">Place Order</span>
+                        <i id="submitLoader" class="fas fa-spinner fa-spin ml-2 hidden"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: Checkout Modal -->
+
+    <!-- @COMPONENT: Toast Notification -->
+    <div id="toast" class="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+        <span id="toastMessage"></span>
+    </div>
+    <!-- @END_COMPONENT: Toast Notification -->
+
+    <script>
+        // @STATE: cart:array = [], isCartOpen:boolean = false, isCheckoutOpen:boolean = false
+        
+        // Product data - @DATA: vegetables with INR pricing
+        const vegetables = [
+            {
+                id: 1,
+                name: "Organic Tomatoes",
+                price: 60,
+                image: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+                description: "Fresh, juicy organic tomatoes"
+            },
+            {
+                id: 2,
+                name: "Fresh Carrots",
+                price: 45,
+                image: "https://images.unsplash.com/photo-1445282768818-728615cc910a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+                description: "Crunchy orange carrots"
+            },
+            {
+                id: 3,
+                name: "Green Spinach",
+                price: 35,
+                image: "https://images.unsplash.com/photo-1576045057995-568f588f82fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+                description: "Fresh leafy spinach"
+            },
+            {
+                id: 4,
+                name: "Bell Peppers",
+                price: 80,
+                image: "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+                description: "Colorful bell peppers"
+            },
+            {
+                id: 5,
+                name: "Fresh Broccoli",
+                price: 70,
+                image: "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+                description: "Green broccoli florets"
+            },
+            {
+                id: 6,
+                name: "Button Mushrooms",
+                price: 90,
+                image: "https://images.unsplash.com/photo-1518864551437-73b9827c0b9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+                description: "Fresh button mushrooms"
+            },
+            {
+                id: 7,
+                name: "Organic Potatoes",
+                price: 40,
+                image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+                description: "Farm-fresh potatoes"
+            },
+            {
+                id: 8,
+                name: "Fresh Onions",
+                price: 30,
+                image: "https://images.unsplash.com/photo-1508747703725-719777637510?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+                description: "Red and white onions"
+            },
+            {
+                id: 9,
+                name: "Green Beans",
+                price: 55,
+                image: "https://images.unsplash.com/photo-1506806732259-39c2d0268443?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+                description: "Tender green beans"
+            },
+            {
+                id: 10,
+                name: "Fresh Cauliflower",
+                price: 50,
+                image: "https://images.unsplash.com/photo-1510627498534-cf7e9002facc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
+                description: "White cauliflower heads"
+            }
+        ];
+
+        // Application state
+        let cart = [];
+        let isCartOpen = false;
+        let isCheckoutOpen = false;
+
+        // @FUNCTIONALITY: Initialize the application
+        (function initApp() {
+            renderProducts();
+            setupEventListeners();
+            updateCartUI();
+        })();
+
+        // @FUNCTIONALITY: Render product grid
+        function renderProducts() {
+            const productGrid = document.getElementById('productGrid');
+            productGrid.innerHTML = vegetables.map(product => `
+                <!-- @COMPONENT: ProductCard [${product.name}] -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                    <!-- ${product.description} -->
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h4 class="font-semibold text-gray-900 mb-2">${product.name}</h4>
+                        <p class="text-2xl font-bold text-organic-green mb-4">₹${product.price}/kg</p>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center border rounded-lg">
+                                <button onclick="changeQuantity(${product.id}, -1)" 
+                                        class="px-3 py-2 text-gray-600 hover:text-gray-800 transition-colors">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <span id="qty-${product.id}" class="px-4 py-2 border-x min-w-[3rem] text-center">1</span>
+                                <button onclick="changeQuantity(${product.id}, 1)" 
+                                        class="px-3 py-2 text-gray-600 hover:text-gray-800 transition-colors">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            
+                            <button onclick="addToCart(${product.id})" 
+                                    class="bg-organic-green text-white px-4 py-2 rounded-lg hover:bg-organic-light transition-colors">
+                                <i class="fas fa-cart-plus mr-2"></i>Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_COMPONENT: ProductCard -->
+            `).join('');
+        }
+
+        // @FUNCTIONALITY: Setup event listeners
+        function setupEventListeners() {
+            // Cart toggle
+            document.getElementById('cartToggle').addEventListener('click', toggleCart);
+            document.getElementById('closeCart').addEventListener('click', closeCart);
+            
+            // Checkout modal
+            document.getElementById('checkoutBtn').addEventListener('click', openCheckout);
+            document.getElementById('closeCheckout').addEventListener('click', closeCheckout);
+            
+            // Form submission
+            document.getElementById('checkoutForm').addEventListener('submit', handleOrderSubmission);
+            
+            // Close modals on outside click
+            document.getElementById('cartSidebar').addEventListener('click', (e) => {
+                if (e.target.id === 'cartSidebar') closeCart();
+            });
+            
+            document.getElementById('checkoutModal').addEventListener('click', (e) => {
+                if (e.target.id === 'checkoutModal') closeCheckout();
+            });
+        }
+
+        // @FUNCTIONALITY: Quantity management
+        function changeQuantity(productId, change) {
+            const qtyElement = document.getElementById(`qty-${productId}`);
+            let currentQty = parseInt(qtyElement.textContent);
+            let newQty = Math.max(1, currentQty + change);
+            qtyElement.textContent = newQty;
+        }
+
+        // @FUNCTIONALITY: Add item to cart
+        function addToCart(productId) {
+            const product = vegetables.find(v => v.id === productId);
+            const quantity = parseInt(document.getElementById(`qty-${productId}`).textContent);
+            
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: quantity
+                });
+            }
+            
+            // Reset quantity selector
+            document.getElementById(`qty-${productId}`).textContent = '1';
+            
+            updateCartUI();
+            showToast(`${product.name} added to cart!`);
+        }
+
+        // @FUNCTIONALITY: Remove item from cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+            showToast('Item removed from cart');
+        }
+
+        // @FUNCTIONALITY: Update cart quantity
+        function updateCartQuantity(productId, newQuantity) {
+            if (newQuantity <= 0) {
+                removeFromCart(productId);
+                return;
+            }
+            
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity = newQuantity;
+                updateCartUI();
+            }
+        }
+
+        // @FUNCTIONALITY: Update cart UI
+        function updateCartUI() {
+            const cartCount = document.getElementById('cartCount');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            cartCount.textContent = totalItems;
+            cartTotal.textContent = `₹${totalPrice}`;
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="text-gray-500 text-center py-8">Your cart is empty</p>';
+                checkoutBtn.disabled = true;
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="flex items-center justify-between border-b pb-4 mb-4">
+                        <div class="flex-1">
+                            <h4 class="font-medium text-gray-900">${item.name}</h4>
+                            <p class="text-sm text-gray-600">₹${item.price}/kg</p>
+                        </div>
+                        <div class="flex items-center ml-4">
+                            <button onclick="updateCartQuantity(${item.id}, ${item.quantity - 1})" 
+                                    class="px-2 py-1 text-gray-600 hover:text-gray-800">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span class="px-3">${item.quantity}</span>
+                            <button onclick="updateCartQuantity(${item.id}, ${item.quantity + 1})" 
+                                    class="px-2 py-1 text-gray-600 hover:text-gray-800">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button onclick="removeFromCart(${item.id})" 
+                                    class="ml-3 text-red-500 hover:text-red-700">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+                checkoutBtn.disabled = false;
+            }
+        }
+
+        // @FUNCTIONALITY: Cart management
+        function toggleCart() {
+            if (isCartOpen) {
+                closeCart();
+            } else {
+                openCart();
+            }
+        }
+
+        function openCart() {
+            document.getElementById('cartSidebar').classList.remove('translate-x-full');
+            isCartOpen = true;
+        }
+
+        function closeCart() {
+            document.getElementById('cartSidebar').classList.add('translate-x-full');
+            isCartOpen = false;
+        }
+
+        // @FUNCTIONALITY: Checkout management
+        function openCheckout() {
+            const orderSummary = document.getElementById('orderSummary');
+            const checkoutTotal = document.getElementById('checkoutTotal');
+            
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            orderSummary.innerHTML = cart.map(item => `
+                <div class="flex justify-between text-sm">
+                    <span>${item.name} x ${item.quantity}</span>
+                    <span>₹${item.price * item.quantity}</span>
+                </div>
+            `).join('');
+            
+            checkoutTotal.textContent = `₹${totalPrice}`;
+            
+            document.getElementById('checkoutModal').classList.remove('hidden');
+            document.getElementById('checkoutModal').classList.add('flex');
+            isCheckoutOpen = true;
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkoutModal').classList.add('hidden');
+            document.getElementById('checkoutModal').classList.remove('flex');
+            isCheckoutOpen = false;
+        }
+
+        // @FUNCTIONALITY: Order submission with EmailJS integration
+        async function handleOrderSubmission(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitOrder');
+            const submitText = document.getElementById('submitText');
+            const submitLoader = document.getElementById('submitLoader');
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitText.textContent = 'Processing...';
+            submitLoader.classList.remove('hidden');
+            
+            // TODO: Implement EmailJS integration
+            // This is where you would integrate with EmailJS service
+            // Example configuration needed:
+            // 1. Initialize EmailJS with your public key
+            // 2. Create email template
+            // 3. Send email with order details
+            
+            try {
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Prepare order data
+                const formData = new FormData(e.target);
+                const orderData = {
+                    customerInfo: {
+                        fullName: formData.get('fullName'),
+                        email: formData.get('email'),
+                        phone: formData.get('phone'),
+                        address: formData.get('address')
+                    },
+                    orderItems: cart,
+                    totalAmount: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                    orderDate: new Date().toLocaleString()
+                };
+                
+                console.log('Order Data:', orderData);
+                
+                // TODO: Replace with actual EmailJS call
+                /*
+                await emailjs.send('your_service_id', 'your_template_id', {
+                    to_email: 'nepat68953@misehub.com',
+                    customer_name: orderData.customerInfo.fullName,
+                    customer_email: orderData.customerInfo.email,
+                    customer_phone: orderData.customerInfo.phone,
+                    customer_address: orderData.customerInfo.address,
+                    order_items: JSON.stringify(orderData.orderItems),
+                    total_amount: orderData.totalAmount,
+                    order_date: orderData.orderDate
+                });
+                */
+                
+                // Clear cart and close modals
+                cart = [];
+                updateCartUI();
+                closeCheckout();
+                closeCart();
+                
+                // Reset form
+                e.target.reset();
+                
+                showToast('Order placed successfully! You will receive a confirmation email shortly.');
+                
+            } catch (error) {
+                console.error('Order submission error:', error);
+                showToast('Failed to place order. Please try again.', 'error');
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                submitText.textContent = 'Place Order';
+                submitLoader.classList.add('hidden');
+            }
+        }
+
+        // @FUNCTIONALITY: Toast notifications
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toastMessage.textContent = message;
+            
+            if (type === 'error') {
+                toast.className = toast.className.replace('bg-green-500', 'bg-red-500');
+            } else {
+                toast.className = toast.className.replace('bg-red-500', 'bg-green-500');
+            }
+            
+            toast.classList.remove('translate-x-full');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-x-full');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
