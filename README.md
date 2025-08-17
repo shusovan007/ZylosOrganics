@@ -2,15 +2,6 @@
 
 A lightweight, single-page React e-commerce application for organic vegetables with shopping cart functionality and email order processing.
 
-## Features
-
-- **Beautiful Landing Page**: Brand introduction with organic-themed design
-- **Product Catalog**: 9 fresh vegetables with images, prices (INR), and descriptions
-- **Shopping Cart**: Add/remove items, quantity management, real-time total calculation
-- **Checkout System**: Customer details form with validation
-- **Email Integration**: Order processing via EmailJS (configured for nepat68953@misehub.com)
-- **Mobile Responsive**: Optimized for all devices
-- **Modern Design**: Light green and earthy tones matching organic brand
 
 ## Tech Stack
 
@@ -52,12 +43,8 @@ A lightweight, single-page React e-commerce application for organic vegetables w
 
 5. Open http://localhost:5000 in your browser
 
-## Deployment on Replit
+6. Deployment on Netlify
 
-1. Fork this repository to your Replit account
-2. The app will automatically install dependencies and start
-3. Configure EmailJS environment variables in Replit's secrets tab
-4. Your app will be available at your Replit URL
 
-## Project Structure
+
 
