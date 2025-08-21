@@ -1,6 +1,14 @@
 import emailjs from '@emailjs/browser';
 import { CartItem } from "@/hooks/use-cart";
 import { randomUUID } from "crypto";
+import { Order } from '@/db/databases';
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = "https://kuaehairbdzcikzoyzam.supabase.co";
+const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt1YWVoYWlyYmR6Y2lrem95emFtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUzNjk1OTMsImV4cCI6MjA3MDk0NTU5M30.Yl-YIU8i2yZin0sKF9-bl5iFamkO60zken9kk25vpng";
+
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
 
 interface CustomerDetails {
   // fullName: string;
@@ -16,6 +24,21 @@ interface CustomerDetails {
   additionalInfo: string;
   expectedDate: string;
 }
+
+function mapCustomerToOrder(emailDataSeller: any) {
+  return {
+    full_name: emailDataSeller.name,
+    email: emailDataSeller.email,
+    phone: emailDataSeller.phone,
+    business_name: emailDataSeller.bussinessName,
+    address: emailDataSeller.address,
+    additional_comments: emailDataSeller.additionalInfo,
+    expected_delivery_date: emailDataSeller.expectedDate,
+    order_id: emailDataSeller.order_id,
+    order_summary:emailDataSeller.message
+  };
+}
+
 
 export async function sendOrderEmail(
   customerDetails: CustomerDetails,
@@ -124,6 +147,22 @@ const orderItemsString = cartItems
       console.log('EmailJS not configured - simulating email sending');
       console.log('Order email would be sent with data:', emailData);
     }
+
+    type InsertOrder = Omit<Order, "id" | "created_at">;
+
+     const orderDB: InsertOrder = mapCustomerToOrder(emailDataSeller);
+
+  const { data, error } = await supabase
+  .from("Customer")
+  .insert([orderDB]); 
+
+
+  if (error) {
+  console.error("Insert failed:", error.message);
+} else {
+  console.log("Row inserted:", data);
+}
+
     
     // Log order details for development
     console.log('Order processed successfully:');

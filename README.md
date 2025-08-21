@@ -13,14 +13,11 @@ A lightweight, single-page React e-commerce application for organic vegetables w
 
 ## Getting Started
 
-### Prerequisites
-
-- Node.js (v18 or higher)
 - npm or yarn
 
 ### Installation
 
-1. Clone the repository or open in Replit
+1. Clone the repository 
 2. Install dependencies:
    ```bash
    npm install
