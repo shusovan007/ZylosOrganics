@@ -199,6 +199,14 @@ interface CheckoutModalProps {
   onOrderComplete: () => void;
 }
 
+function getISTDate(offsetDays = 0) {
+  const now = new Date();
+  // Convert to IST (UTC +5:30)
+  const istTime = new Date(now.getTime() + (5.5 * 60 * 60 * 1000));
+  istTime.setDate(istTime.getDate() + offsetDays);
+  return istTime.toISOString().split("T")[0];
+}
+
 export default function CheckoutModal({ 
   isOpen, 
   onClose, 
@@ -206,6 +214,9 @@ export default function CheckoutModal({
   total, 
   onOrderComplete 
 }: CheckoutModalProps) {
+
+   const tomorrow = getISTDate(1);   // min: tomorrow
+  const maxDate = getISTDate(3);  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
@@ -374,6 +385,7 @@ export default function CheckoutModal({
               />
             </div>
 
+            <div className="space-y-2">
             <div>
               <Label htmlFor="expectedDate">Expected Delivery Date *</Label>
               <Input
@@ -381,12 +393,19 @@ export default function CheckoutModal({
                 id="expectedDate"
                 name="expectedDate"
                 required
-                min={today}
-                 max={new Date(new Date(today).getTime() + 3 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]} // today + 3 days
+                // min={today}
+                //  max={new Date(new Date(today).getTime() + 3 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]} // today + 3 days
+
+                min={tomorrow}
+          max={maxDate}
                 value={formData.expectedDate}
                 onChange={handleChange}
                 className="mt-1"
               />
+            </div>
+            <p className="text-sm text-gray-500 italic">
+        Note : This is the estimated delivery time. Please note that delivery time is affected by external factors also, we appreciate your patience.
+      </p>
             </div>
             
             <Button 
