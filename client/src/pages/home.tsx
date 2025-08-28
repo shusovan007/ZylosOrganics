@@ -18,25 +18,29 @@ export default function Home() {
   const handleCloseCheckout = () => setIsCheckoutOpen(false);
 
   const scrollToProducts = () => {
-    const element = document.getElementById('products');
-    element?.scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById("products");
+    element?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <div className="min-h-screen bg-soft-white">
-      <Header 
+      <Header
         cartItemCount={cart.totalQuantity}
         onCartClick={handleOpenCart}
       />
-      
+
       <main>
         <Hero onShopNowClick={scrollToProducts} />
-        <ProductGrid onAddToCart={cart.addItem} />
+
+        {/* Wrapper for Search + Product Grid */}
+        <div className="w-full max-w-7xl mx-auto px-4" id="products">
+          <ProductGrid onAddToCart={cart.addItem} />
+        </div>
       </main>
-      
+
       <Footer />
-      
-      <CartSidebar 
+
+      <CartSidebar
         isOpen={isCartOpen}
         onClose={handleCloseCart}
         cartItems={cart.items}
@@ -45,8 +49,8 @@ export default function Home() {
         onRemoveItem={cart.removeItem}
         onCheckout={handleOpenCheckout}
       />
-      
-      <CheckoutModal 
+
+      <CheckoutModal
         isOpen={isCheckoutOpen}
         onClose={handleCloseCheckout}
         cartItems={cart.items}

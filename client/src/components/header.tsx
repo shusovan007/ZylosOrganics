@@ -1,5 +1,4 @@
-import { ShoppingCart } from "lucide-react";
-import { Search, X } from "lucide-react";
+import { ShoppingCart, Search, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useVegetableStore } from "@/components/useVegetableStore";
@@ -20,65 +19,56 @@ export default function Header({ cartItemCount, onCartClick }: HeaderProps) {
   const handleSearchClick = () => {
     setOpen((prev) => !prev);
 
-    // scroll to ProductGrid if opening search
     if (!open) {
       const section = document.getElementById("products");
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
-      }
+      if (section) section.scrollIntoView({ behavior: "smooth" });
     }
 
-    // reset when closing search
-    if (open) {
-      reset();
-    }
+    if (open) reset();
   };
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Left Logo */}
-          <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-organic-green">
-              ZylosOrganics
-            </h1>
-            <span className="ml-2 text-sm text-gray-600 hidden sm:inline">
-              Fresh & Natural
-            </span>
+    <header className="bg-white shadow-sm sticky top-0 z-50 w-full">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row justify-between items-center w-full py-2 sm:py-3 gap-2">
+          {/* Left: Logo */}
+          <div className="flex items-center gap-2">
+            <h1 className="text-2xl font-bold text-organic-green">ZylosOrganics</h1>
+            <span className="text-sm text-gray-600 hidden sm:inline">Fresh & Natural</span>
           </div>
 
-          {/* Right Side: Search + Cart */}
-          <div className="flex items-center space-x-4">
-            {/* Search */}
-            <div className="relative p-2 text-gray-400 hover:text-organic-green transition-colors">
+          {/* Right: Search + Cart */}
+          <div className="flex items-center gap-2 sm:gap-4 w-full sm:w-auto">
+            {/* Search input + button */}
+            <div className="relative flex items-center w-full sm:w-auto">
               <AnimatePresence>
                 {open && (
                   <motion.input
                     type="text"
                     placeholder="Search your items..."
-                    initial={{ width: 0, opacity: 0 }}
-                    animate={{ width: 340, opacity: 1 }}
+                    initial={{ opacity: 0, width: 0 }}
+                    animate={{ opacity: 1, width: '200px' }}
+                    exit={{ opacity: 0, width: 0 }}
+                    transition={{ duration: 0.3 }}
                     onChange={handleChange}
-                    exit={{ width: 0, opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="pl-4 pr-10 py-2 rounded-full bg-gray-200 text-gray-800 placeholder-gray-500
-                               shadow-lg focus:outline-none focus:ring-0 border-0 
-                               absolute right-14"
                     autoFocus
+                    className="pl-4 pr-10 py-2 rounded-full
+                      bg-gray-200 text-gray-800 placeholder-gray-500 shadow-lg 
+                      focus:outline-none focus:ring-0 border-0 w-full sm:w-52"
                   />
                 )}
               </AnimatePresence>
 
+              {/* Search button */}
               <button
                 onClick={handleSearchClick}
-                className="p-2 rounded-full hover:bg-gray-100 transition"
+                className="absolute right-1 p-2 rounded-full hover:bg-gray-100 transition"
               >
-                {open ? <X className="w-6 h-6" /> : <Search className="w-6 h-6" />}
+                {open ? <X className="w-5 h-5" /> : <Search className="w-5 h-5" />}
               </button>
             </div>
 
-            {/* Cart */}
+            {/* Cart Button */}
             <button
               onClick={onCartClick}
               className="relative p-2 text-gray-600 hover:text-organic-green transition-colors"

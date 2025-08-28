@@ -53,7 +53,7 @@ export default function About() {
             Why Choose Us
           </h2>
           <ul className="list-disc pl-6 space-y-2">
-            <li>100% organic & naturally grown vegetables</li>
+            <li>Naturally grown vegetables</li>
             <li>Direct sourcing from local farmers</li>
             <li>Sustainable, eco-conscious farming practices</li>
             <li>Reliable & timely doorstep delivery</li>
