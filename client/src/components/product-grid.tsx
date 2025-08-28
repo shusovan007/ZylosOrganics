@@ -161,6 +161,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Minus, Plus, ShoppingCart, Check } from "lucide-react";
 import { vegetables } from "@/data/vegetables";
 import { Vegetable } from "@/data/vegetables";
+import { useVegetableStore } from "@/components/useVegetableStore";
 
 interface ProductGridProps {
   onAddToCart: (vegetable: Vegetable, quantity: number) => void;
@@ -169,6 +170,7 @@ interface ProductGridProps {
 export default function ProductGrid({ onAddToCart }: ProductGridProps) {
   const [quantities, setQuantities] = useState<Record<number, number>>({});
   const [clickedButtons, setClickedButtons] = useState<Record<number, boolean>>({});
+  const { query, filtered, setQuery, reset } = useVegetableStore();
 
   const getQuantity = (id: number) => quantities[id] ?? 0;
 
@@ -203,8 +205,8 @@ export default function ProductGrid({ onAddToCart }: ProductGridProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {vegetables.map((vegetable) => {
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {filtered.map((vegetable) => {
             const qty = getQuantity(vegetable.id);
             const clicked = clickedButtons[vegetable.id];
 
