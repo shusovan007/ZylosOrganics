@@ -1,8 +1,11 @@
 import { useLocation } from "wouter";
 import { ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function About() {
   const [, setLocation] = useLocation();
+  const navigate = useNavigate();
 
   return (
     <div
@@ -13,13 +16,13 @@ export default function About() {
     >
       <div className="bg-white shadow-2xl rounded-2xl p-10 max-w-3xl w-full relative border border-gray-100">
         {/* Back Button */}
-        <button
-          onClick={() => setLocation("/")}
-          className="flex items-center text-organic-green hover:text-green-700 transition-colors mb-8"
-        >
-          <ArrowLeft className="w-5 h-5 mr-2" />
-          Back to Shop
-        </button>
+         <button
+      onClick={() => navigate(-1)} // go back one step in browser history
+      className="flex items-center text-organic-green hover:text-green-700 transition-colors mb-8"
+    >
+      <ArrowLeft className="w-5 h-5 mr-2" />
+      Back to Shop
+    </button>
 
         {/* Heading */}
         <h1 className="text-4xl font-serif font-bold text-gray-900 mb-6 text-center tracking-wide">

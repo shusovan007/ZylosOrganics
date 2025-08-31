@@ -1,7 +1,7 @@
 // src/components/Footer.tsx
 import React from "react";
 import { Facebook, Instagram, Twitter, Phone, Mail, MapPin } from "lucide-react";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 
 function FooterComponent() {
   return (
@@ -28,16 +28,13 @@ function FooterComponent() {
           <h3 className="font-semibold mb-4 text-lg">Quick Links</h3>
           <ul className="space-y-3 text-gray-400">
             <li>
-              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+              <Link to="/" className="hover:text-white transition-colors">Home</Link>
             </li>
             <li>
-              <a href="#products" className="hover:text-white transition-colors">Products</a>
+              <Link to="/about" className="hover:text-white transition-colors">About</Link>
             </li>
             <li>
-              <Link href="/about" className="hover:text-white transition-colors">About</Link>
-            </li>
-            <li>
-              <Link href="/farms" className="hover:text-white transition-colors">Our Farms</Link>
+              <Link to="/farms" className="hover:text-white transition-colors">Our Farms</Link>
             </li>
           </ul>
         </div>
@@ -61,7 +58,7 @@ function FooterComponent() {
 
       {/* Bottom Bar */}
       <div className="border-t border-gray-700 mt-12 pt-6 text-center text-gray-500 text-sm">
-         {new Date().getFullYear()} ZylosOrganics. All rights reserved.
+        {new Date().getFullYear()} ZylosOrganics. All rights reserved.
       </div>
     </footer>
   );

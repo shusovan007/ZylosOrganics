@@ -1,20 +1,23 @@
 import { ArrowLeft } from "lucide-react";
 import { useLocation } from "wouter";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Farms() {
   const [, setLocation] = useLocation();
+  const navigate = useNavigate();
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
       <div className="bg-white shadow-lg rounded-2xl p-8 max-w-3xl w-full">
         {/* Back Button */}
-        <button
-          onClick={() => setLocation("/")}
-          className="flex items-center text-organic-green hover:text-green-700 transition-colors mb-4"
-        >
-          <ArrowLeft className="w-5 h-5 mr-1" />
-          Back to Shop
-        </button>
+         <button
+      onClick={() => navigate(-1)} // go back one step in browser history
+      className="flex items-center text-organic-green hover:text-green-700 transition-colors mb-8"
+    >
+      <ArrowLeft className="w-5 h-5 mr-2" />
+      Back to Shop
+    </button>
 
         <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center">Our Farms</h1>
         

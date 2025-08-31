@@ -1,17 +1,32 @@
-import { useState, useEffect, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { useState, useEffect, Suspense, useRef } from "react";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Home from "@/pages/home";
 import About from "@/pages/about";
 import Farms from "@/pages/farms";
 import NotFound from "@/pages/not-found";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const firstLoad = useRef(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2500); // 2.5s loading
+    // splash timeout
+    const timer = setTimeout(() => setLoading(false), 2500);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    // redirect only on first load (refresh/direct URL entry)
+    if (firstLoad.current) {
+      firstLoad.current = false;
+      if (location.pathname !== "/") {
+        navigate("/", { replace: true });
+      }
+    }
+  }, [location, navigate]);
 
   return (
     <>
@@ -29,6 +44,7 @@ const App = () => {
       ) : (
         <Suspense fallback={<div className="p-6 text-center">Loading...</div>}>
           <div className="fade-in">
+            <ScrollToTop />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
