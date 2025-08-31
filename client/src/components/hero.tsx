@@ -17,12 +17,20 @@ interface HeroProps {
 
 //for deployment
 
+// const slideshowImages = [
+//   "/images/slideShow/slideshow1.jpg",
+//   "/images/slideShow/slideshow2.jpg",
+//   "/images/slideShow/slideshow3.jpg",
+//   "/images/slideShow/slideshow4.jpg",
+//   "/images/slideShow/slideshow5.jpg"
+// ];
+
 const slideshowImages = [
-  "/images/slideShow/slideshow1.jpg",
-  "/images/slideShow/slideshow2.jpg",
-  "/images/slideShow/slideshow3.jpg",
-  "/images/slideShow/slideshow4.jpg",
-  "/images/slideShow/slideshow5.jpg"
+  "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/slideshow1.jpg",
+  "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/slideshow2.jpg",
+  "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/slideshow3.jpg",
+  "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/slideshow4.jpg",
+  "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/slideshow5.jpg"
 ];
 
 export default function Hero({ onShopNowClick }: HeroProps) {
