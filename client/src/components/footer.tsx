@@ -1,75 +1,70 @@
-// 
-
-
-
+// src/components/Footer.tsx
+import React from "react";
 import { Facebook, Instagram, Twitter, Phone, Mail, MapPin } from "lucide-react";
 import { Link } from "wouter";
 
-export default function Footer() {
+function FooterComponent() {
   return (
     <footer className="bg-gray-900 text-white py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Brand Info */}
-          <div>
-            <h4 className="text-xl font-bold mb-4 text-organic-green">ZylosOrganics</h4>
-            <p className="text-gray-300 mb-4">
-              Fresh & Natural organic vegetables delivered to your doorstep. 
-              Sustainably grown, locally sourced.
-            </p>
-            <div className="flex space-x-4">
-              <Facebook className="w-5 h-5 text-gray-400 hover:text-organic-green cursor-pointer transition-colors" />
-              <Instagram className="w-5 h-5 text-gray-400 hover:text-organic-green cursor-pointer transition-colors" />
-              <Twitter className="w-5 h-5 text-gray-400 hover:text-organic-green cursor-pointer transition-colors" />
-            </div>
-          </div>
-          
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-gray-300">
-              <li>
-                <Link href="/about">
-                  <span className="hover:text-organic-green transition-colors cursor-pointer">
-                    About Us
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/farms">
-                  <span className="hover:text-organic-green transition-colors cursor-pointer">
-                    Our Farms
-                  </span>
-                </Link>
-              </li>
-            </ul>
-          </div>
-          
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
-            <div className="space-y-2 text-gray-300">
-              <div className="flex items-center">
-                <Phone className="w-4 h-4 mr-2" />
-                <span>+91 90515-57004</span>
-              </div>
-              <div className="flex items-center">
-                <Mail className="w-4 h-4 mr-2" />
-                <span>kaustavdutta9051@gmail.com</span>
-              </div>
-              <div className="flex items-center">
-                <MapPin className="w-4 h-4 mr-2" />
-                <span>Manicktala, Kolkata</span>
-              </div>
-            </div>
+      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
+        {/* Logo + About */}
+        <div>
+          <span className="text-2xl font-bold tracking-wide">
+            <span className="text-[#99c369]">Zylos</span>
+            <span className="text-[#679143]">Organics</span>
+          </span>
+          <p className="mt-3 text-gray-400 leading-relaxed">
+            Fresh vegetables delivered straight to your doorstep — naturally grown, always fresh.
+          </p>
+          <div className="flex gap-5 mt-5">
+            <Facebook className="w-5 h-5 cursor-pointer hover:text-green-400 transition-colors" />
+            <Instagram className="w-5 h-5 cursor-pointer hover:text-green-400 transition-colors" />
+            <Twitter className="w-5 h-5 cursor-pointer hover:text-green-400 transition-colors" />
           </div>
         </div>
-        
-        {/* Bottom Footer */}
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-          <p>2024 ZylosOrganics. All rights reserved. Made with love for healthy living.</p>
+
+        {/* Quick Links */}
+        <div>
+          <h3 className="font-semibold mb-4 text-lg">Quick Links</h3>
+          <ul className="space-y-3 text-gray-400">
+            <li>
+              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            </li>
+            <li>
+              <a href="#products" className="hover:text-white transition-colors">Products</a>
+            </li>
+            <li>
+              <Link href="/about" className="hover:text-white transition-colors">About</Link>
+            </li>
+            <li>
+              <Link href="/farms" className="hover:text-white transition-colors">Our Farms</Link>
+            </li>
+          </ul>
         </div>
+
+        {/* Contact */}
+        <div>
+          <h3 className="font-semibold mb-4 text-lg">Contact</h3>
+          <ul className="space-y-3 text-gray-400">
+            <li className="flex items-center gap-2">
+              <Phone size={16} className="text-green-400" /> +91 90515-57004
+            </li>
+            <li className="flex items-center gap-2">
+              <Mail size={16} className="text-green-400" /> zylosorganics@gmail.com
+            </li>
+            <li className="flex items-center gap-2">
+              <MapPin size={16} className="text-green-400" /> Kolkata, West Bengal
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-gray-700 mt-12 pt-6 text-center text-gray-500 text-sm">
+         {new Date().getFullYear()} ZylosOrganics. All rights reserved.
       </div>
     </footer>
   );
 }
+
+export default React.memo(FooterComponent);

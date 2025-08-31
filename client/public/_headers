@@ -1,0 +1,25 @@
+/* 
+  Cache all static assets aggressively
+*/
+  Cache-Control: public, max-age=31536000, immutable
+
+/*
+  Ensure HTML is always fresh (so users get new builds)
+*/
+  Cache-Control: no-cache
+
+/* Images */
+  Content-Type: image/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/* Fonts */
+  Content-Type: font/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/* JavaScript */
+  Content-Type: application/javascript
+  Cache-Control: public, max-age=31536000, immutable
+
+/* CSS */
+  Content-Type: text/css
+  Cache-Control: public, max-age=31536000, immutable

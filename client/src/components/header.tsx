@@ -1,6 +1,7 @@
+// src/components/Header.tsx
+import React, { useState, useCallback } from "react";
 import { ShoppingCart, Search, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
 import { useVegetableStore } from "@/components/useVegetableStore";
 
 interface HeaderProps {
@@ -8,15 +9,16 @@ interface HeaderProps {
   onCartClick: () => void;
 }
 
-export default function Header({ cartItemCount, onCartClick }: HeaderProps) {
+function HeaderComponent({ cartItemCount, onCartClick }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const { setQuery, reset } = useVegetableStore();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
-  };
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value),
+    [setQuery]
+  );
 
-  const handleSearchClick = () => {
+  const handleSearchClick = useCallback(() => {
     setOpen((prev) => !prev);
 
     if (!open) {
@@ -25,64 +27,56 @@ export default function Header({ cartItemCount, onCartClick }: HeaderProps) {
     }
 
     if (open) reset();
-  };
+  }, [open, reset]);
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50 w-full">
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row justify-between items-center w-full py-2 sm:py-3 gap-2">
-          {/* Left: Logo */}
-          <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold text-organic-green">ZylosOrganics</h1>
-            <span className="text-sm text-gray-600 hidden sm:inline">Fresh & Natural</span>
-          </div>
+      <div className="container mx-auto px-10 flex items-center justify-between py-4 flex-wrap">
+        <h1 className="flex items-baseline space-x-2">
+  <span className="text-2xl font-bold">
+    <span className="text-[#99c369]">Zylos</span>
+    <span className="text-[#679143]">Organics</span>
+  </span>
+  <span className="text-gray-500 text-sm font-normal">Fresh &amp; Natural</span>
+</h1>
 
-          {/* Right: Search + Cart */}
-          <div className="flex items-center gap-2 sm:gap-4 w-full sm:w-auto">
-            {/* Search input + button */}
-            <div className="relative flex items-center w-full sm:w-auto">
-              <AnimatePresence>
-                {open && (
-                  <motion.input
-                    type="text"
-                    placeholder="Search your items..."
-                    initial={{ opacity: 0, width: 0 }}
-                    animate={{ opacity: 1, width: '200px' }}
-                    exit={{ opacity: 0, width: 0 }}
-                    transition={{ duration: 0.3 }}
-                    onChange={handleChange}
-                    autoFocus
-                    className="pl-4 pr-10 py-2 rounded-full
-                      bg-gray-200 text-gray-800 placeholder-gray-500 shadow-lg 
-                      focus:outline-none focus:ring-0 border-0 w-full sm:w-52"
-                  />
-                )}
-              </AnimatePresence>
-
-              {/* Search button */}
-              <button
-                onClick={handleSearchClick}
-                className="absolute right-1 p-2 rounded-full hover:bg-gray-100 transition"
-              >
-                {open ? <X className="w-5 h-5" /> : <Search className="w-5 h-5" />}
-              </button>
-            </div>
-
-            {/* Cart Button */}
-            <button
-              onClick={onCartClick}
-              className="relative p-2 text-gray-600 hover:text-organic-green transition-colors"
-            >
-              <ShoppingCart className="w-6 h-6" />
-              {cartItemCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-warm-orange text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  {cartItemCount}
-                </span>
+        {/* Search + Cart (responsive) */}
+        <div className="flex flex-col sm:flex-row items-center sm:gap-4 space-y-2 sm:space-y-0 mt-2 sm:mt-0">
+          {/* Search */}
+          <div className="relative flex items-center">
+            <AnimatePresence>
+              {open && (
+                <motion.input
+                  key="search"
+                  type="text"
+                  placeholder="Search vegetables..."
+                  onChange={handleChange}
+                  autoFocus
+                  initial={{ width: 0, opacity: 0 }}
+                  animate={{ width: 200, opacity: 1 }}
+                  exit={{ width: 0, opacity: 0 }}
+                  className="px-3 py-1 border rounded-lg outline-none"
+                />
               )}
+            </AnimatePresence>
+            <button onClick={handleSearchClick} className="ml-2">
+              {open ? <X className="w-6 h-6" /> : <Search className="w-6 h-6" />}
             </button>
           </div>
+
+          {/* Cart */}
+          <button className="relative" onClick={onCartClick}>
+            <ShoppingCart className="w-6 h-6" />
+            {cartItemCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {cartItemCount}
+              </span>
+            )}
+          </button>
         </div>
       </div>
     </header>
   );
 }
+
+export default React.memo(HeaderComponent);

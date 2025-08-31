@@ -299,142 +299,191 @@ export interface Vegetable {
 export const vegetables: Vegetable[] = [
   {
     id: 1,
-    name: "Baby Corn",
-    price: 150,
-    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/babycorn.jpg",
-    description: " বেবি কর্ন  |  बेबी कॉर्न "
-  },
-  {
-    id: 2,
-    name: "Beans",
-    price: 107,
-    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/beans-barbati.jpg",
-    description: "বিনস  |  फलियाँ "
-  },
-  {
-    id: 3,
-    name: "Beetroot",
-    price: 41,
-    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/beetroot.jpg",
-    description: "Earthy and sweet beetroot, great for salads and juices."
+    name: "Avacado",
+    price: 1820,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/avocado.jpg",
+    description: "আভাকাডো | एवोकाडो",
   },
   {
     id: 4,
-    name: "Bell Pepper",
-    price: 150,
-    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/bellpepper.jpg",
-    description: "Bright and crunchy bell peppers full of vitamins."
+    name: "Beans",
+    price: 126,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/beans.jpg",
+    description: "বিনস | फलियाँ",
   },
   {
     id: 5,
-    name: "Brinjal",
-    price: 74,
-    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/brinjal.jpg",
-    description: "Smooth and fresh brinjal, ideal for curries and fries."
+    name: "Beetroot",
+    price: 56,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/beetroot.jpg",
+    description: "বিটরুট | चुकंदर",
   },
   {
     id: 6,
-    name: "Broccoli",
-    price: 418,
-    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/broccoli.jpg",
-    description: "Nutrient-rich broccoli florets for healthy meals."
+    name: "Bell Pepper",
+    price: 420,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/bellpepper.jpg",
+    description: "লাল, হলুদ ক্যাপসিকাম | लाल पीली शिमला मिर्च",
   },
   {
     id: 7,
-    name: "Cabbage",
-    price: 42,
-    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/cabbage.jpg",
-    description: "Fresh, crunchy cabbage perfect for salads and stir-fries."
-  },
-  {
-    id: 8,
-    name: "Capsicum",
-    price: 125,
-    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/capsicum.jpg",
-    description: "Flavorful capsicum to add color and crunch to your dishes."
+    name: "Bitter Gourd",
+    price: 84,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/bitter%20gourd.jpg",
+    description: "করলা | करैला",
   },
   {
     id: 9,
-    name: "Carrot",
-    price: 48,
-    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/carrot.jpg",
-    description: "Sweet, crunchy carrots rich in beta-carotene."
+    name: "Brinjal",
+    price: 84,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/brinjal.jpg",
+    description: "বেগুন | बैंगन",
   },
   {
     id: 10,
-    name: "Cauliflower",
-    price: 83,
-    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/cauliflower.jpg",
-    description: "Fresh cauliflower florets for curries, fries, and more."
-  },
-  {
-    id: 11,
-    name: "Chilli",
-    price: 71,
-    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/GreenChilli.jpg",
-    description: "Spicy green chillies to add heat to your recipes."
+    name: "Broccoli",
+    price: 560,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/broccoli.jpg",
+    description: "ব্রকলি | ब्रोकोली",
   },
   {
     id: 12,
-    name: "Coriander",
-    price: 214,
-    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/corriander.jpg",
-    description: "Fragrant fresh coriander leaves for garnishing and flavor."
+    name: "Cabbage",
+    price: 33.6,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/cabbage.jpg",
+    description: "বাঁধাকপি | पत्ता गोभी",
   },
   {
     id: 13,
-    name: "Cucumber",
-    price: 45,
-    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/cucumber.jpg",
-    description: "Cool, refreshing cucumbers for salads and snacks."
+    name: "Capsicum",
+    price: 72.8,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/capsicum.jpg",
+    description: "ক্যাপসিকাম | शिमला मिर्च",
   },
   {
     id: 14,
-    name: "Garlic",
-    price: 80,
-    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/garlic.jpg",
-    description: "Aromatic garlic cloves to enhance any dish."
-  },
-  {
-    id: 15,
-    name: "Ginger",
-    price: 116,
-    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/ginger2.jpg",
-    description: "Fresh ginger root for flavor and health benefits."
+    name: "Carrot",
+    price: 56,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/carrot.jpg",
+    description: "গাজর | गाजर",
   },
   {
     id: 16,
-    name: "Onion",
-    price: 32,
-    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/onion.jpg",
-    description: "Fresh onions for everyday cooking needs."
-  },
-  {
-    id: 17,
-    name: "Potato",
-    price: 26,
-    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/potato2.jpg",
-    description: "Versatile potatoes for boiling, frying, or baking."
-  },
-  {
-    id: 18,
-    name: "Spinach",
-    price: 72,
-    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/spinach.jpg",
-    description: "Iron-rich spinach leaves for healthy meals."
-  },
-  {
-    id: 19,
-    name: "Spring Onion",
-    price: 60,
-    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/springonion.jpg",
-    description: "Fresh spring onions to add a mild onion flavor."
+    name: "Celery",
+    price: 420,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/celery.jpg",
+    description: "সেলারি | सेलरी",
   },
   {
     id: 20,
+    name: "Cucumber",
+    price: 84,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/cucumber.jpg",
+    description: "শসা | खीरा",
+  },
+  {
+    id: 21,
+    name: "Drumstick",
+    price: 112,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/drumstick.jpg",
+    description: "ডাঁটা | सहजन (ड्रमस्टिक)",
+  },
+  {
+    id: 22,
+    name: "Garlic",
+    price: 84,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/garlic.jpg",
+    description: "রসুন | लहसुन",
+  },
+  {
+    id: 23,
+    name: "Ginger",
+    price: 70,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/ginger2.jpg",
+    description: "আদা | अदरक",
+  },
+  {
+    id: 24,
+    name: "Green Chilli",
+    price: 84,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/GreenChilli.jpg",
+    description: "সবুজ মরিচ | हरी मिर्च",
+  },
+  {
+    id: 25,
+    name: "Green Mango",
+    price: 98,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/green%20mango.jpg",
+    description: "কাঁচা আম | कच्चा आम",
+  },
+  {
+    id: 27,
+    name: "Ladies Finger",
+    price: 84,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/ladies%20finger.jpg",
+    description: "ঢেঁড়স | भिंडी",
+  },
+  {
+    id: 28,
+    name: "Lettuce",
+    price: 420,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/lettuce.jpg",
+    description: "লেটুস | लेट्यूस",
+  },
+  {
+    id: 31,
+    name: "Onion",
+    price: 32,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/onion.jpg",
+    description: "পেঁয়াজ | प्याज",
+  },
+  {
+    id: 34,
+    name: "Pointed Gourd",
+    price: 70,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/pointed%20gourd.jpg",
+    description: "পটল | परवल",
+  },
+  {
+    id: 35,
+    name: "Potato (Jyoti)",
+    price: 18,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/potato2.jpg",
+    description: "আলু | आलू",
+  },
+  {
+    id: 38,
+    name: "Red Cabbage",
+    price: 168,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/red%20cabbage.jpg",
+    description: "লাল বাঁধাকপি | लाल पत्ता गोभी",
+  },
+  {
+    id: 40,
+    name: "Red Lettuce",
+    price: 420,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/red%20lettuce.jpg",
+    description: "লাল লেটুস | लाल लेट्यूस",
+  },
+  {
+    id: 41,
+    name: "Ridge Gourd",
+    price: 98,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/ridge%20gourd.jpg",
+    description: "ঝিঙ্গা | झींगा",
+  },
+  {
+    id: 44,
     name: "Tomato",
-    price: 66,
+    price: 56,
     image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/tomato2.jpg",
-    description: "Juicy tomatoes perfect for salads and cooking."
-  }
+    description: "টমেটো | टमाटर",
+  },
+  {
+    id: 45,
+    name: "Zucchini",
+    price: 98,
+    image: "https://raw.githubusercontent.com/a-zylorg/ZyloOrg/refs/heads/master/zucchini.jpg",
+    description: "জুকিনি | जुगनी",
+  },
 ];

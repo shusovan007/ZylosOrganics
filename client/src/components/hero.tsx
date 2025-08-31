@@ -57,11 +57,25 @@ export default function Hero({ onShopNowClick }: HeroProps) {
               index === currentImageIndex ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            <img
-              src={image}
-              alt={`Fresh vegetables ${index + 1}`}
-              className="w-full h-full object-cover"
-            />
+           <img
+  src={image} // fallback image
+  srcSet={`
+    ${image}?w=480 480w,
+    ${image}?w=768 768w,
+    ${image}?w=1200 1200w
+  `}
+  sizes="(max-width: 480px) 480px,
+         (max-width: 768px) 768px,
+         1200px"
+  alt={`Fresh vegetables ${index + 1}`}
+  width={1200} 
+  height={300} 
+  loading="lazy"
+   style={{ willChange: "transform, opacity" }}
+  className="w-full h-full object-cover"
+/>
+
+
             <div className="absolute inset-0 bg-black/40"></div>
           </div>
         ))}
