@@ -114,26 +114,36 @@ function ProductGridComponent({ onAddToCart }: ProductGridProps) {
 )}
 
 <p className="text-gray-500 mt-3 text-sm sm:text-base">
-  ₹{vegetable.price} / kg
+  ₹{vegetable.price} /{" "}
+  {vegetable.inPcs ? "piece" : vegetable.inBunch ? "bunch" : "kg"}
 </p>
                   {/* Quantity Controls */}
                   <div className="flex items-center space-x-3 mt-3">
-                    <Button
-                      size="icon"
-                      variant="outline"
-                      onClick={() => updateQuantity(vegetable.id, -0.5)}
-                    >
-                      <Minus className="w-4 h-4" />
-                    </Button>
-                    <span className="text-lg">{qty}</span>
-                    <Button
-                      size="icon"
-                      variant="outline"
-                      onClick={() => updateQuantity(vegetable.id, 0.5)}
-                    >
-                      <Plus className="w-4 h-4" />
-                    </Button>
-                  </div>
+  {(() => {
+    // decide step size based on vegetable type
+    const step = (vegetable.inPcs || vegetable.inBunch) ? 1 : 0.5;
+
+    return (
+      <>
+        <Button
+          size="icon"
+          variant="outline"
+          onClick={() => updateQuantity(vegetable.id, -step)}
+        >
+          <Minus className="w-4 h-4" />
+        </Button>
+        <span className="text-lg">{qty}</span>
+        <Button
+          size="icon"
+          variant="outline"
+          onClick={() => updateQuantity(vegetable.id, step)}
+        >
+          <Plus className="w-4 h-4" />
+        </Button>
+      </>
+    );
+  })()}
+</div>
 
                {/* Add to Cart Button */}
 <Button

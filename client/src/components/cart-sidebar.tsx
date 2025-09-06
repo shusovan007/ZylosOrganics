@@ -62,36 +62,53 @@ export default function CartSidebar({
                   />
                   <div className="flex-1">
                     <h4 className="font-medium text-gray-900">{item.name}</h4>
-                    <p className="text-sm text-gray-500">₹{item.price} per kg</p>
+                   <p className="text-sm text-gray-500">
+  ₹{item.price} per{" "}
+  {item.inPcs ? "piece" : item.inBunch ? "bunch" : "kg"}
+</p>
                     <div className="flex items-center mt-2 space-x-2">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => onUpdateQuantity(item.id, -0.5)}
-                        className="h-6 w-6 p-0"
-                      >
-                        <Minus className="w-3 h-3" />
-                      </Button>
-                      <span className="text-sm font-medium min-w-[3rem] text-center">
-                        {item.quantity} kg
-                      </span>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => onUpdateQuantity(item.id, 0.5)}
-                        className="h-6 w-6 p-0"
-                      >
-                        <Plus className="w-3 h-3" />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => onRemoveItem(item.id)}
-                        className="h-6 w-6 p-0 text-red-500 hover:text-red-700 ml-4"
-                      >
-                        <Trash2 className="w-3 h-3" />
-                      </Button>
-                    </div>
+  <Button
+    variant="ghost"
+    size="sm"
+    onClick={() =>
+      onUpdateQuantity(
+        item.id,
+        item.inPcs || item.inBunch ? -1 : -0.5
+      )
+    }
+    className="h-6 w-6 p-0"
+  >
+    <Minus className="w-3 h-3" />
+  </Button>
+
+  <span className="text-sm font-medium min-w-[3rem] text-center">
+    {item.quantity} {item.inPcs ? "pcs" : item.inBunch ? "bunch" : "kg"}
+  </span>
+
+  <Button
+    variant="ghost"
+    size="sm"
+    onClick={() =>
+      onUpdateQuantity(
+        item.id,
+        item.inPcs || item.inBunch ? 1 : 0.5
+      )
+    }
+    className="h-6 w-6 p-0"
+  >
+    <Plus className="w-3 h-3" />
+  </Button>
+
+  <Button
+    variant="ghost"
+    size="sm"
+    onClick={() => onRemoveItem(item.id)}
+    className="h-6 w-6 p-0 text-red-500 hover:text-red-700 ml-4"
+  >
+    <Trash2 className="w-3 h-3" />
+  </Button>
+</div>
+
                   </div>
                   <div className="text-right">
                     <p className="font-medium text-gray-900">₹{item.price * item.quantity}</p>
