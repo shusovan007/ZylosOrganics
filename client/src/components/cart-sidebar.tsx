@@ -67,7 +67,7 @@ export default function CartSidebar({
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => onUpdateQuantity(item.id, -1)}
+                        onClick={() => onUpdateQuantity(item.id, -0.5)}
                         className="h-6 w-6 p-0"
                       >
                         <Minus className="w-3 h-3" />
@@ -78,7 +78,7 @@ export default function CartSidebar({
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => onUpdateQuantity(item.id, 1)}
+                        onClick={() => onUpdateQuantity(item.id, 0.5)}
                         className="h-6 w-6 p-0"
                       >
                         <Plus className="w-3 h-3" />

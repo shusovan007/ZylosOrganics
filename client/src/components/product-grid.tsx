@@ -27,7 +27,7 @@ function ProductGridComponent({ onAddToCart }: ProductGridProps) {
   const updateQuantity = useCallback((id: number, change: number) => {
     setQuantities((prev) => {
       const currentQty = prev[id] ?? 0;
-      const newQty = Math.max(0, Math.min(10, currentQty + change));
+      const newQty = Math.max(0, Math.min(1000, currentQty + change));
       return { ...prev, [id]: newQty };
     });
   }, []);
@@ -102,10 +102,11 @@ function ProductGridComponent({ onAddToCart }: ProductGridProps) {
   className="flex items-center text-sm text-green-600 mt-2"
   onClick={() => toggleDescription(vegetable.id)}
 >
+  
+  <span className="ml-1">Native Name</span>
   <ChevronDown
     className={`w-4 h-4 transition-transform ${descOpen ? "rotate-180" : ""}`}
   />
-  <span className="ml-1">Native Name</span>
 </button>
 
 {descOpen && (
@@ -120,7 +121,7 @@ function ProductGridComponent({ onAddToCart }: ProductGridProps) {
                     <Button
                       size="icon"
                       variant="outline"
-                      onClick={() => updateQuantity(vegetable.id, -1)}
+                      onClick={() => updateQuantity(vegetable.id, -0.5)}
                     >
                       <Minus className="w-4 h-4" />
                     </Button>
@@ -128,7 +129,7 @@ function ProductGridComponent({ onAddToCart }: ProductGridProps) {
                     <Button
                       size="icon"
                       variant="outline"
-                      onClick={() => updateQuantity(vegetable.id, 1)}
+                      onClick={() => updateQuantity(vegetable.id, 0.5)}
                     >
                       <Plus className="w-4 h-4" />
                     </Button>
