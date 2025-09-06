@@ -27,7 +27,7 @@ export function useCart() {
     setItems(prev => 
       prev.map(item => {
         if (item.id === id) {
-          const newQuantity = Math.max(1, item.quantity + change);
+          const newQuantity = Math.max(0.5, item.quantity + change);
           return { ...item, quantity: newQuantity };
         }
         return item;
